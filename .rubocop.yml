@@ -14,10 +14,7 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*' # For CI broken
-    - 'app/*'
-    - 'log/*'
-    - 'test/*'
-    - 'tmp/*'
+
 
 # pending status for avoiding the warning
 
