@@ -8,12 +8,7 @@ AllCops:
   rubocop: disable all
   
   Exclude:
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'script/**/*'
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'vendor/bundle/**/*' # For CI broken
+    - '**/*'"
 
 
 # pending status for avoiding the warning
