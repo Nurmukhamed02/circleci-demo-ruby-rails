@@ -5,7 +5,7 @@ Metrics/AbcSize:
   Enabled: false
 
 AllCops:
-  rubocop:disable all
+  rubocop: disable all
   
   Exclude:
     - 'db/**/*'
