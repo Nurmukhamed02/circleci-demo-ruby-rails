@@ -8,7 +8,7 @@ AllCops:
   rubocop: disable all
   
   Exclude:
-    - '**/*'"
+    - '**/*'
 
 
 # pending status for avoiding the warning
