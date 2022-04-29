@@ -15,5 +15,6 @@ RSpec.describe 'Check that the files we have changed have correct syntax' do
       result = system "bundle exec rubocop --config .rubocop.yml --fail-level warn #{@files}"
       expect(result).to be(true)
     end
+    
   end
 end
