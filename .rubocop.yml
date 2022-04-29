@@ -1,16 +1,63 @@
-
-
-# About ABC http://wiki.c2.com/?AbcMetric
-Metrics/AbcSize:
-  Enabled: false
+require:
+  - rubocop-rspec
+  - rubocop-rails
 
 AllCops:
-  rubocop: disable all
-  
+  TargetRubyVersion: 2.6
+
   Exclude:
-    - '**/*'
+    - 'spec/*/'
+    - 'db/schema.rb'
+    - 'vendor/*/'
+    - 'bin/*'
+    - 'node_modules/*/'
+Style/Documentation:
+  # Skips checking to make sure top level modules / classes have a comment.
+  Enabled: false
 
+Rails/HelperInstanceVariable:
+  Enabled: false
 
-# pending status for avoiding the warning
+Style/ClassAndModuleChildren:
+  # Skips checking the style of children definitions at classes and modules.
+  #
+  # Basically there are two different styles:
+  #
+  # `nested` - have each child on a separate line
+  #   class Foo
+  #     class Bar
+  #     end
+  #   end
+  #
+  # `compact` - combine definitions as much as possible
+  #   class Foo::Bar
+  #   end
+  #
+  # With it disabled, either or is valid.
+  Enabled: false
 
+Style/FormatStringToken:
+  EnforcedStyle: template
 
+Layout/LineLength:
+  # Commonly used screens these days easily fit more than 80 characters.
+  Max: 120
+  IgnoreCopDirectives: true
+  Exclude:
+    - 'spec/*/_spec.rb'
+
+Metrics/AbcSize:
+  # 15 is sometimes difficult to stay under.
+  Max: 25
+
+Metrics/MethodLength:
+  # Too short methods lead to extraction of single-use methods, which can make
+  # the code easier to read (by naming things), but can also clutter the class
+  Max: 25
+  Exclude:
+    - 'spec/*/_spec.rb'
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  # No space makes the method definition shorter and differentiates
+  # from a regular assignment.
+  EnforcedStyle: no_space
