@@ -47,7 +47,7 @@ jobs:
       - ruby/rspec-test
       - run:
           name: Running rubocop
-          command: bundle exec rubocop --parallel --config .rubocop.yml
+          command:  git diff --name-only | xargs rubocop
 #       - ruby/rubocop-check
 
 workflows:
