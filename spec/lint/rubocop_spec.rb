@@ -1,20 +1,13 @@
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe 'Check that the files we have changed have correct syntax' do
+RSpec.describe "Check that the files we have changed have correct syntax" do
   before do
-    current_sha = 'origin/master..HEAD'
-    @files = `git diff-tree --no-commit-id --name-only -r #{current_sha} | grep .rb`
-    @files.tr!("\n", ' ')
+    current_sha = `git rev-parse --verify HEAD`.strip!
+    files = `git diff master #{current_sha} --name-only | grep .rb`
+    files.tr!("\n", " ")
+    @report = `rubocop #{files}`
+    puts "Report: #{@report}"
   end
 
-  it 'runs rubocop on changed ruby files' do
-    if @files.empty?
-      puts "Linting not performed. No ruby files changed."
-    else
-      puts "Running rubocop for changed files: #{@files}"
-      result = system "bundle exec rubocop --config .rubocop.yml --fail-level warn #{@files}"
-      expect(result).to be(true)
-    end
-    
-  end
+  it { expect(@report.match("Offenses")).to be_nil, "Rubocop offenses found.\n#{@report}" }
 end
